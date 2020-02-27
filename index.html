@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./libraries/css/all.css" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="./libraries/css/gooFonts.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="./libraries/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="./libraries/css/mdb.min.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+    <title>Shape Recognition</title>
+  </head>
+  <body>
+    <h1>Shape Classifier</h1>
+    <hr />
+    <canvas
+      id="canvas"
+      width="300"
+      height="300"
+      style="border:8px solid;"
+    ></canvas>
+    <img
+      id="canvasimg"
+      style="position:absolute;top:10%;left:52%;display:none;"
+    />
+    <br /><br />
+    <input type="button" value="classify" id="sb" />
+    <input type="button" value="clear" id="cb" />
+
+    <script src="data.js" type="module"></script>
+    <script src="script.js" type="module"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="./libraries/js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="./libraries/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="./libraries/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="./libraries/js/mdb.min.js"></script>
+  </body>
+</html>
