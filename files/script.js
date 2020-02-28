@@ -1,6 +1,11 @@
 import { run as shapeRun } from "./shape-recog/script.js";
 import { run as digitRun } from "./digit-recog/script.js";
 
+$(document).ready(function() {
+  $("#inputShape").val("(60,60,1)");
+  $("#modelSelect").val(1);
+});
+
 $("#train").click(function() {
   let selectedValue = $("#modelSelect").val();
   try {
@@ -9,8 +14,7 @@ $("#train").click(function() {
       $(".drawing").css("display", "none");
       $("#canvas").attr("width", "300px");
       $("#canvas").attr("height", "300px");
-    }
-    if (selectedValue == 2) {
+    } else if (selectedValue == 2) {
       $(".drawing").css("display", "none");
       $("#canvas").attr("width", "280px");
       $("#canvas").attr("height", "280px");
@@ -23,9 +27,27 @@ $("#train").click(function() {
 $("#userTrain").click(function() {
   let selectedValue = $("#modelSelect").val();
   try {
-    if (selectedValue == 1) shapeRun(Layers);
+    if (selectedValue == 1) {
+      shapeRun(Layers);
+      $(".drawing").css("display", "none");
+      $("#canvas").attr("width", "300px");
+      $("#canvas").attr("height", "300px");
+    } else if (selectedValue == 2) {
+      $(".drawing").css("display", "none");
+      $("#canvas").attr("width", "280px");
+      $("#canvas").attr("height", "280px");
+      digitRun(Layers1);
+    }
   } catch (error) {
     alert(error);
+  }
+});
+$("#modelSelect").change(function() {
+  let selectedValue = $("#modelSelect").val();
+  if (selectedValue == 2) {
+    $("#inputShape").val("(28,28,1)");
+  } else if (selectedValue == 1) {
+    $("#inputShape").val("(60,60,1)");
   }
 });
 let layerNumber = 1;
@@ -374,6 +396,15 @@ let Layers = [
   }),
   tf.layers.dense({ units: 4, activation: "softmax" })
 ];
+let Layers1 = [
+  tf.layers.conv2d({
+    inputShape: [28, 28, 1],
+    kernelSize: 4,
+    filters: 8,
+    activation: "relu"
+  }),
+  tf.layers.dense({ units: 10, activation: "softmax" })
+];
 $("#saveLayers").click(function() {
   Layers = [
     tf.layers.conv2d({
@@ -409,6 +440,11 @@ $("#saveLayers").click(function() {
             0,
             tf.layers.dense({ units: Number(units), activation: activation })
           );
+          Layers1.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.dense({ units: Number(units), activation: activation })
+          );
         } catch (error) {
           alert(error);
         }
@@ -439,6 +475,15 @@ $("#saveLayers").click(function() {
               activation: activation
             })
           );
+          Layers1.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.conv2d({
+              kernelSize: kernelSize,
+              filters: filters,
+              activation: activation
+            })
+          );
         } catch (error) {
           alert(error);
         }
@@ -451,14 +496,24 @@ $("#saveLayers").click(function() {
             .first()
             .val()
         );
-
-        Layers.splice(
-          Layers.length - 1,
-          0,
-          tf.layers.dropout({
-            rate: rate
-          })
-        );
+        try {
+          Layers.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.dropout({
+              rate: rate
+            })
+          );
+          Layers1.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.dropout({
+              rate: rate
+            })
+          );
+        } catch (error) {
+          alert(error);
+        }
       } else if (select == "MaxPooling2D ") {
         let pool_size = Number(
           $("#" + id)
@@ -469,6 +524,13 @@ $("#saveLayers").click(function() {
 
         try {
           Layers.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.MaxPooling2D({
+              poolSize: [pool_size, pool_size]
+            })
+          );
+          Layers1.splice(
             Layers.length - 1,
             0,
             tf.layers.MaxPooling2D({
