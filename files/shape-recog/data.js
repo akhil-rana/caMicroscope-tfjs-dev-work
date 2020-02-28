@@ -81,7 +81,7 @@ export class MnistData {
     ]);
 
     this.datasetLabels = new Uint8Array(await labelsResponse.arrayBuffer());
-    console.log(this.datasetLabels);
+    // console.log(this.datasetLabels);
     // Create shuffled indices into the train/test set for when we select a
     // random dataset element for training / validation.
     this.trainIndices = tf.util.createShuffledIndices(NUM_TRAIN_ELEMENTS);
