@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="./libraries/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
     <!-- Google Fonts -->
     <link rel="stylesheet" href="./libraries/css/gooFonts.css" />
     <!-- Bootstrap core CSS -->
@@ -21,24 +24,359 @@
       <!-- Navbar brand -->
       <a class="navbar-brand" href="#">TS.js model </a>
     </nav>
-    <br /><br />
-    <div class="main">
-      <canvas
-        id="canvas"
-        width="300"
-        height="300"
-        style="border:6px solid;"
-      ></canvas>
-      <img
-        id="canvasimg"
-        style="position:absolute;top:10%;left:52%;display:none;"
-      />
+    <br />
+    <div class="main" class="lead">
+      <select
+        class="browser-default custom-select"
+        id="modelSelect"
+        style="width: 15em"
+      >
+        <option value="1" selected>4 Shapes Recognition</option>
+        <option value="2">Rock, Paper, Scissors </option>
+        <option value="3">Handwritten Digits</option>
+      </select>
+      &nbsp;
+      <button type="button" class="btn btn-secondary px-2" id="train">
+        Train Model
+      </button>
       <br /><br />
-      <input type="button" value="classify" id="sb" />
-      <input type="button" value="clear" id="cb" />
+      <div class="content">
+        <div
+          id="layers"
+          class="card"
+          style="min-width: 21em; min-height: 10em; margin-bottom: 3em"
+        >
+          <span class="card-title h3-responsive">Layers</span>
+          <div
+            class="accordion md-accordion layersClass"
+            id="accordionEx"
+            role="tablist"
+            aria-multiselectable="true"
+          >
+            <div class="card LayerCard" id="inputLayer">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingOne1">
+                <a
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseOne1"
+                  aria-expanded="false"
+                  aria-controls="collapseOne1"
+                >
+                  <h5 class="mb-0 ">
+                    Input Layer
+
+                    <i
+                      class="fas fa-angle-down rotate-icon"
+                      style="position: absolute; right:0.8em"
+                    ></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseOne1"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingOne1"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  <div
+                    style="display: flex; flex-wrap:wrap; align-content:center; max-width: 21em"
+                  >
+                    <select
+                      class="browser-default custom-select"
+                      id="modelClassSelect"
+                      style="width: 9em; margin:0 auto; margin-bottom: 2em "
+                    >
+                      <!-- <option value="1">Dense</option> -->
+                      <option value="1" selected>Conv2D </option>
+                      <!-- <option value="3">Flatten</option>
+                      <option value="4">Dropout</option>
+                      <option value="5">MaxPooling2D</option> --> </select
+                    >&nbsp;&nbsp; &nbsp;&nbsp;
+                    <div class="md-form" style="margin: 0 auto; width: 9em">
+                      <input
+                        type="text"
+                        id="inputShape"
+                        class="form-control"
+                        disabled
+                        value="(60,60,1)"
+                      />
+                      <label for="inputShape">inputShape:</label>
+                    </div>
+                    <div class="md-form" style="margin: 0 auto; width: 5em; ">
+                      <input
+                        type="number"
+                        id="kernelSize"
+                        class="form-control"
+                        value="4"
+                        disabled
+                      />
+                      <label for="kernelSize">kernelSize:</label>
+                    </div>
+                    <div class="md-form" style="margin: 0 auto; width: 5em; ">
+                      <input
+                        type="number"
+                        id="filters"
+                        class="form-control"
+                        value="8"
+                        disabled
+                      />
+                      <label for="filters">filters:</label>
+                    </div>
+                    <div class="md-form" style="margin: 0 auto; width: 8em; ">
+                      <input
+                        type="text"
+                        id="activation"
+                        class="form-control"
+                        value="relu"
+                        disabled
+                      />
+                      <label for="activation">activation:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 6em; display:none"
+                    >
+                      <input type="number" id="units" class="form-control" />
+                      <label for="units">units:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 6em; display:none"
+                    >
+                      <input
+                        type="text"
+                        id="pool_size"
+                        class="form-control"
+                        value="[2,2]"
+                      />
+                      <label for="pool_size">pool_size:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 6em; display:none"
+                    >
+                      <input
+                        type="number"
+                        max="1"
+                        min="0"
+                        step="0.01"
+                        id="rate"
+                        class="form-control"
+                      />
+                      <label for="rate">rate:</label>
+                    </div>
+                  </div>
+
+                  <div
+                    style="display: flex; flex-wrap:wrap; align-content:center; max-width: 21em"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-danger "
+                      style="margin: 0 auto; display:none"
+                      id="deleteLayer"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success "
+                      style="margin: 0 auto; display:none"
+                      id="saveLayer"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card" id="add1" style="width: 25em; height: 2em">
+              <h4>+</h4>
+            </div>
+            <div class="card LayerCard" id="outputLayer">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingTwo2">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseTwo2"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo2"
+                >
+                  <h5 class="mb-0">
+                    Output Layer
+                    <i
+                      class="fas fa-angle-down rotate-icon"
+                      style="position: absolute; right:0.8em"
+                    ></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseTwo2"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingTwo2"
+                data-parent="#accordionEx"
+              >
+                <div class="card-body">
+                  <div
+                    style="display: flex; flex-wrap:wrap; align-content:center; max-width: 21em"
+                  >
+                    <select
+                      class="browser-default custom-select"
+                      id="modelClassSelect"
+                      style="width: 9em; margin:0 auto; margin-bottom: 2em "
+                    >
+                      <option value="1" selected>Dense</option> </select
+                    >&nbsp;&nbsp; &nbsp;&nbsp;
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 9em; display:none"
+                    >
+                      <input
+                        type="text"
+                        id="inputShape"
+                        class="form-control"
+                        disabled
+                        value="(60,60,1)"
+                      />
+                      <label for="inputShape">inputShape:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 5em; display:none"
+                    >
+                      <input
+                        type="number"
+                        id="kernelSize"
+                        class="form-control"
+                        value="4"
+                      />
+                      <label for="kernelSize">kernelSize:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 5em; display:none"
+                    >
+                      <input
+                        type="number"
+                        id="filters"
+                        class="form-control"
+                        value="8"
+                      />
+                      <label for="filters">filters:</label>
+                    </div>
+                    <div class="md-form" style="margin: 0 auto; width: 8em; ">
+                      <input
+                        type="text"
+                        id="activation"
+                        class="form-control"
+                        value="softmax"
+                        disabled
+                      />
+                      <label for="activation">activation:</label>
+                    </div>
+                    <div class="md-form" style="margin: 0 auto; width: 6em;">
+                      <input
+                        type="number"
+                        id="units"
+                        class="form-control"
+                        value="4"
+                        disabled
+                      />
+                      <label for="units">units:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 6em; display:none"
+                    >
+                      <input
+                        type="text"
+                        id="pool_size"
+                        class="form-control"
+                        value="[2,2]"
+                      />
+                      <label for="pool_size">pool_size:</label>
+                    </div>
+                    <div
+                      class="md-form"
+                      style="margin: 0 auto; width: 6em; display:none"
+                    >
+                      <input
+                        type="number"
+                        max="1"
+                        min="0"
+                        step="0.01"
+                        id="rate"
+                        class="form-control"
+                      />
+                      <label for="rate">rate:</label>
+                    </div>
+                  </div>
+
+                  <div
+                    style="display: flex; flex-wrap:wrap; align-content:center; max-width: 21em"
+                  >
+                    <button
+                      type="button"
+                      class="btn btn-danger "
+                      id="deleteLayer"
+                      style="margin: 0 auto; display:none"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-success "
+                      style="margin: 0 auto; display:none"
+                      id="saveLayer"
+                    >
+                      Save
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card -->
+          </div>
+        </div>
+        <div class="drawing" style="display: block;">
+          <canvas
+            id="canvas"
+            width="300"
+            height="300"
+            style="border:6px solid;"
+          ></canvas>
+          <img
+            id="canvasimg"
+            style="position:absolute;top:10%;left:52%;display:none;"
+          />
+          <br /><br />
+          <input
+            type="button"
+            class="btn btn-primary px-2"
+            value="classify"
+            id="sb"
+          />
+          <input
+            type="button"
+            class="btn btn-warning px-2"
+            value="clear"
+            id="cb"
+          />
+        </div>
+      </div>
     </div>
-    <script src="./files/shape-recog/data.js" type="module"></script>
-    <script src="./files/shape-recog/script.js" type="module"></script>
+
     <!-- JQuery -->
     <script type="text/javascript" src="./libraries/js/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -50,5 +388,8 @@
     ></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="./libraries/js/mdb.min.js"></script>
+    <script src="./files/shape-recog/data.js" type="module"></script>
+    <script src="./files/shape-recog/script.js" type="module"></script>
+    <script src="./files/script.js" type="module"></script>
   </body>
 </html>

@@ -93,7 +93,7 @@ function save() {
   var tensor = resized.expandDims(0);
   var prediction = model.predict(tensor);
   var pIndex = tf.argMax(prediction, 1).dataSync();
-  // console.log(prediction);
+  prediction.print();
   if (pIndex == 0) alert("Triangle");
   if (pIndex == 1) alert("Square");
   if (pIndex == 2) alert("Circle");
@@ -115,7 +115,7 @@ function init() {
   clearButton.addEventListener("click", erase);
 }
 
-async function run() {
+export async function run() {
   const data = new MnistData();
   await data.load();
   const model = getModel();
@@ -125,4 +125,4 @@ async function run() {
   alert("Training is done, try classifying your handwriting!");
 }
 
-document.addEventListener("DOMContentLoaded", run);
+// document.addEventListener("DOMContentLoaded", run);

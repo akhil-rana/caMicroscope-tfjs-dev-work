@@ -1,3 +1,20 @@
 .main {
   text-align: center;
 }
+.content {
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.content div {
+  margin: 0 auto;
+}
+#layers {
+  box-shadow: none;
+}
+.card-header {
+  width: 25em;
+}
+.card-body .md-form input {
+  margin-bottom: 2em;
+}

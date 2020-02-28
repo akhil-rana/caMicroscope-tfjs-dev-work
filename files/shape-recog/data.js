@@ -1,20 +1,3 @@
-/**
- * @license
- * Copyright 2018 Google LLC. All Rights Reserved.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * =============================================================================
- */
-
 const IMAGE_SIZE = 3600;
 const NUM_CLASSES = 4;
 const NUM_DATASET_ELEMENTS = 14900;
@@ -24,8 +7,8 @@ const TRAIN_TEST_RATIO = 5 / 6;
 const NUM_TRAIN_ELEMENTS = Math.floor(TRAIN_TEST_RATIO * NUM_DATASET_ELEMENTS);
 const NUM_TEST_ELEMENTS = NUM_DATASET_ELEMENTS - NUM_TRAIN_ELEMENTS;
 
-const MNIST_IMAGES_SPRITE_PATH = "data.png";
-const MNIST_LABELS_PATH = "labels";
+const MNIST_IMAGES_SPRITE_PATH = "../../data-set/data.png";
+const MNIST_LABELS_PATH = "../../data-set/labels";
 
 /**
  * A class that fetches the sprited MNIST dataset and returns shuffled batches.
