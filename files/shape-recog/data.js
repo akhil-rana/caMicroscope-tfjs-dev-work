@@ -11,8 +11,6 @@ const MNIST_IMAGES_SPRITE_PATH = "../../data-set/data.png";
 // const MNIST_IMAGES_SPRITE_PATH = "https://i.ibb.co/VjHLDXM/data.png";
 
 const MNIST_LABELS_PATH = "../../data-set/labels";
-// const MNIST_LABELS_PATH =
-//   "https://github.com/akhil-rana/caMicroscope-tsjs-dev-work/raw/master/data-set/labels";
 
 /**
  * A class that fetches the sprited MNIST dataset and returns shuffled batches.
