@@ -10,8 +10,8 @@ const NUM_TEST_ELEMENTS = NUM_DATASET_ELEMENTS - NUM_TRAIN_ELEMENTS;
 // const MNIST_IMAGES_SPRITE_PATH = "../../data-set/data.png";
 const MNIST_IMAGES_SPRITE_PATH = "https://i.ibb.co/VjHLDXM/data.png";
 
-// const MNIST_LABELS_PATH = "../../data-set/labels";
-const MNIST_LABELS_PATH = "https://file.io/4wB8TI";
+const MNIST_LABELS_PATH = "../../data-set/labels";
+// const MNIST_LABELS_PATH ="http://s000.tinyupload.com/download.php?file_id=62760568858227147297&t=6276056885822714729738779";
 
 /**
  * A class that fetches the sprited MNIST dataset and returns shuffled batches.
