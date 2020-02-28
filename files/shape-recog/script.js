@@ -125,6 +125,7 @@ export async function run(Layers) {
   await train(model, data);
   init();
   alert("Training is done, try classifying your drawing!");
+  $(".drawing").css("display", "block");
 }
 
 // document.addEventListener("DOMContentLoaded", run);

@@ -1,9 +1,21 @@
 import { run as shapeRun } from "./shape-recog/script.js";
+import { run as digitRun } from "./digit-recog/script.js";
 
 $("#train").click(function() {
   let selectedValue = $("#modelSelect").val();
   try {
-    if (selectedValue == 1) shapeRun(optimalLayers);
+    if (selectedValue == 1) {
+      shapeRun(optimalLayers);
+      $(".drawing").css("display", "none");
+      $("#canvas").attr("width", "300px");
+      $("#canvas").attr("height", "300px");
+    }
+    if (selectedValue == 2) {
+      $(".drawing").css("display", "none");
+      $("#canvas").attr("width", "280px");
+      $("#canvas").attr("height", "280px");
+      digitRun(optimalLayers1);
+    }
   } catch (error) {
     alert(error);
   }
@@ -471,3 +483,17 @@ $("#saveLayers").click(function() {
   });
   // console.log(Layers);
 });
+let optimalLayers1 = [
+  tf.layers.conv2d({
+    inputShape: [28, 28, 1],
+    kernelSize: 3,
+    filters: 8,
+    activation: "relu"
+  }),
+  tf.layers.maxPooling2d({ poolSize: [2, 2] }),
+  tf.layers.conv2d({ filters: 16, kernelSize: 3, activation: "relu" }),
+  tf.layers.maxPooling2d({ poolSize: [2, 2] }),
+  tf.layers.flatten(),
+  tf.layers.dense({ units: 128, activation: "relu" }),
+  tf.layers.dense({ units: 10, activation: "softmax" })
+];

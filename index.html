@@ -24,6 +24,7 @@
       <!-- Navbar brand -->
       <a class="navbar-brand" href="#">TF.js model </a>
     </nav>
+
     <br />
     <div class="main" class="lead">
       <select
@@ -39,6 +40,7 @@
       <button type="button" class="btn btn-secondary px-2" id="train">
         Train Model (Optimal)
       </button>
+
       <br /><br />
       <div class="content">
         <div
@@ -357,12 +359,12 @@
             </button>
           </div>
         </div>
-        <div class="drawing" style="display: block;">
+        <div class="drawing" style="display: none;">
           <canvas
             id="canvas"
             width="300"
             height="300"
-            style="border:6px solid;"
+            style="border:6px solid; "
           ></canvas>
           <img
             id="canvasimg"
@@ -386,7 +388,6 @@
         </div>
       </div>
     </div>
-
     <!-- JQuery -->
     <script type="text/javascript" src="./libraries/js/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -400,6 +401,8 @@
     <script type="text/javascript" src="./libraries/js/mdb.min.js"></script>
     <script src="./files/shape-recog/data.js" type="module"></script>
     <script src="./files/shape-recog/script.js" type="module"></script>
+    <script src="./files/digit-recog/data.js" type="module"></script>
+    <script src="./files/digit-recog/script.js" type="module"></script>
     <script src="./files/script.js" type="module"></script>
   </body>
 </html>
