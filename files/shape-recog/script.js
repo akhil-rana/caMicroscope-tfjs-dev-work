@@ -4,25 +4,27 @@ var pos = { x: 0, y: 0 };
 var rawImage;
 var model;
 
-function getModel() {
-  model = tf.sequential();
+function getModel(Layers) {
+  model = tf.sequential({
+    layers: Layers
+  });
 
-  model.add(
-    tf.layers.conv2d({
-      inputShape: [60, 60, 1],
-      kernelSize: 4,
-      filters: 8,
-      activation: "relu"
-    })
-  );
-  model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
-  model.add(
-    tf.layers.conv2d({ filters: 16, kernelSize: 3, activation: "relu" })
-  );
-  model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
-  model.add(tf.layers.flatten());
-  model.add(tf.layers.dense({ units: 64, activation: "relu" }));
-  model.add(tf.layers.dense({ units: 4, activation: "softmax" }));
+  // model.add(
+  //   tf.layers.conv2d({
+  //     inputShape: [60, 60, 1],
+  //     kernelSize: 4,
+  //     filters: 8,
+  //     activation: "relu"
+  //   })
+  // );
+  // model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
+  // model.add(
+  //   tf.layers.conv2d({ filters: 16, kernelSize: 3, activation: "relu" })
+  // );
+  // model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
+  // model.add(tf.layers.flatten());
+  // model.add(tf.layers.dense({ units: 64, activation: "relu" }));
+  // model.add(tf.layers.dense({ units: 4, activation: "softmax" }));
 
   model.compile({
     optimizer: tf.train.adam(),
@@ -35,9 +37,9 @@ function getModel() {
 
 async function train(model, data) {
   const metrics = ["loss", "val_loss", "acc", "val_acc"];
-  const container = { name: "Model Training", styles: { height: "640px" } };
+  const container = { name: "Model Training", styles: { height: "1000px" } };
   const fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
-
+  tfvis.visor().setActiveTab("Visor");
   const BATCH_SIZE = 512;
   const TRAIN_DATA_SIZE = 1300;
   const TEST_DATA_SIZE = 190;
@@ -115,14 +117,14 @@ function init() {
   clearButton.addEventListener("click", erase);
 }
 
-export async function run() {
+export async function run(Layers) {
   const data = new MnistData();
   await data.load();
-  const model = getModel();
+  const model = getModel(Layers);
   tfvis.show.modelSummary({ name: "Model Architecture" }, model);
   await train(model, data);
   init();
-  alert("Training is done, try classifying your handwriting!");
+  alert("Training is done, try classifying your drawing!");
 }
 
 // document.addEventListener("DOMContentLoaded", run);

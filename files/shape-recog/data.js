@@ -7,10 +7,10 @@ const TRAIN_TEST_RATIO = 5 / 6;
 const NUM_TRAIN_ELEMENTS = Math.floor(TRAIN_TEST_RATIO * NUM_DATASET_ELEMENTS);
 const NUM_TEST_ELEMENTS = NUM_DATASET_ELEMENTS - NUM_TRAIN_ELEMENTS;
 
-const MNIST_IMAGES_SPRITE_PATH = "../../data-set/data.png";
+const MNIST_IMAGES_SPRITE_PATH = "../../data-set/shape-recog/data.png";
 // const MNIST_IMAGES_SPRITE_PATH = "https://i.ibb.co/VjHLDXM/data.png";
 
-const MNIST_LABELS_PATH = "../../data-set/labels";
+const MNIST_LABELS_PATH = "../../data-set/shape-recog/labels";
 
 /**
  * A class that fetches the sprited MNIST dataset and returns shuffled batches.

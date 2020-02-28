@@ -18,3 +18,11 @@
 .card-body .md-form input {
   margin-bottom: 2em;
 }
+.add:hover {
+  background: rgba(153, 218, 2, 0.87);
+}
+.add {
+  transition: 0.2s;
+  background: rgba(206, 252, 107, 0.719);
+  cursor: pointer;
+}

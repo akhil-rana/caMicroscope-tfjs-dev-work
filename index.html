@@ -17,12 +17,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
-    <title>Shape Recognition</title>
+    <title>TF.js Model</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark primary-color">
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">TS.js model </a>
+      <a class="navbar-brand" href="#">TF.js model </a>
     </nav>
     <br />
     <div class="main" class="lead">
@@ -32,12 +32,12 @@
         style="width: 15em"
       >
         <option value="1" selected>4 Shapes Recognition</option>
-        <option value="2">Rock, Paper, Scissors </option>
-        <option value="3">Handwritten Digits</option>
+        <option value="2">Handwritten Digits</option>
+        <!-- <option value="3">Rock, Paper, Scissors</option> -->
       </select>
       &nbsp;
       <button type="button" class="btn btn-secondary px-2" id="train">
-        Train Model
+        Train Model (Optimal)
       </button>
       <br /><br />
       <div class="content">
@@ -113,7 +113,6 @@
                         id="kernelSize"
                         class="form-control"
                         value="4"
-                        disabled
                       />
                       <label for="kernelSize">kernelSize:</label>
                     </div>
@@ -123,7 +122,6 @@
                         id="filters"
                         class="form-control"
                         value="8"
-                        disabled
                       />
                       <label for="filters">filters:</label>
                     </div>
@@ -149,10 +147,10 @@
                       style="margin: 0 auto; width: 6em; display:none"
                     >
                       <input
-                        type="text"
+                        type="number"
                         id="pool_size"
                         class="form-control"
-                        value="[2,2]"
+                        value="2"
                       />
                       <label for="pool_size">pool_size:</label>
                     </div>
@@ -183,19 +181,11 @@
                     >
                       Delete
                     </button>
-                    <button
-                      type="button"
-                      class="btn btn-success "
-                      style="margin: 0 auto; display:none"
-                      id="saveLayer"
-                    >
-                      Save
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card" id="add1" style="width: 25em; height: 2em">
+            <div class="card add" id="add1" style="width: 25em; height: 2em">
               <h4>+</h4>
             </div>
             <div class="card LayerCard" id="outputLayer">
@@ -300,10 +290,10 @@
                       style="margin: 0 auto; width: 6em; display:none"
                     >
                       <input
-                        type="text"
+                        type="number"
                         id="pool_size"
                         class="form-control"
-                        value="[2,2]"
+                        value="2"
                       />
                       <label for="pool_size">pool_size:</label>
                     </div>
@@ -348,6 +338,24 @@
             </div>
             <!-- Accordion card -->
           </div>
+          <div style="display: flex; flex-wrap:wrap; align-content:center">
+            <button
+              type="button"
+              class="btn btn-success "
+              style="margin: 0 auto; margin-top:1em"
+              id="saveLayers"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary px-2"
+              id="userTrain"
+              style="margin: 0 auto; margin-left:1em;  margin-top:1em"
+            >
+              Train Model
+            </button>
+          </div>
         </div>
         <div class="drawing" style="display: block;">
           <canvas
@@ -365,11 +373,13 @@
             type="button"
             class="btn btn-primary px-2"
             value="classify"
+            style="margin-bottom: 2em;"
             id="sb"
           />
           <input
             type="button"
             class="btn btn-warning px-2"
+            style="margin-bottom: 2em;"
             value="clear"
             id="cb"
           />

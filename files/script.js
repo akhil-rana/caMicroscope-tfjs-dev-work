@@ -2,7 +2,19 @@ import { run as shapeRun } from "./shape-recog/script.js";
 
 $("#train").click(function() {
   let selectedValue = $("#modelSelect").val();
-  if (selectedValue == 1) shapeRun();
+  try {
+    if (selectedValue == 1) shapeRun(optimalLayers);
+  } catch (error) {
+    alert(error);
+  }
+});
+$("#userTrain").click(function() {
+  let selectedValue = $("#modelSelect").val();
+  try {
+    if (selectedValue == 1) shapeRun(Layers);
+  } catch (error) {
+    alert(error);
+  }
 });
 let layerNumber = 1;
 
@@ -23,8 +35,8 @@ $("#add" + 1).click(function() {
     "'  class='collapse'  role='tabpanel'  aria-labelledby='headingOne" +
     (layerNumber + 1) +
     "'  data-parent='#accordionEx'>  <div class='card-body'>" +
-    " <div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <select    class='browser-default custom-select'    id='modelClassSelect'    style='width: 9em; margin:0 auto; margin-bottom: 2em '  >    <option value='1' selected>Dense</option>    <option value='2'>Conv2D </option>    <option value='3'>Flatten</option>    <option value='4'>Dropout</option>    <option value='5'>MaxPooling2D</option> </select  >&nbsp;&nbsp; &nbsp;&nbsp;  <div    class='md-form'    style='margin: 0 auto; width: 9em; display:none'  >    <input      type='text'      id='inputShape'      class='form-control'      disabled          />    <label for='inputShape'>inputShape:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 7em; display:none'  >    <input      type='number'      id='kernelSize'      class='form-control'         />    <label for='kernelSize'>kernelSize:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 5em; display:none'  >    <input      type='number'      id='filters'      class='form-control'          />    <label for='filters'>filters:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 8em; '>    <input      type='text'      id='activation'      class='form-control'          />    <label for='activation'>activation:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 6em;'>    <input      type='number'      id='units'      class='form-control'         />    <label for='units'>units:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='text'      id='pool_size'      class='form-control'          />    <label for='pool_size'>pool_size:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='number'      max='1'      min='0'      step='0.01'      id='rate'      class='form-control'    />    <label for='rate'>rate:</label>  </div></div><br /><div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <button    type='button'    class='btn btn-danger '    style='margin: 0 auto; ' id='deleteLayer' >    Delete  </button>  </div>" +
-    "</div></div></div><div class='card LayerCard' id='add" +
+    " <div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <select    class='browser-default custom-select'    id='modelClassSelect'    style='width: 9em; margin:0 auto; margin-bottom: 2em '  >    <option value='1' selected>Dense</option>    <option value='2'>Conv2D </option>    <option value='3'>Flatten</option>    <option value='4'>Dropout</option>    <option value='5'>MaxPooling2D</option> </select  >&nbsp;&nbsp; &nbsp;&nbsp;  <div    class='md-form'    style='margin: 0 auto; width: 9em; display:none'  >    <input      type='text'      id='inputShape'      class='form-control'      disabled          />    <label for='inputShape'>inputShape:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 7em; display:none'  >    <input      type='number'      id='kernelSize'      class='form-control'         />    <label for='kernelSize'>kernelSize:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 5em; display:none'  >    <input      type='number'      id='filters'      class='form-control'          />    <label for='filters'>filters:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 8em; '>    <input      type='text'      id='activation'      class='form-control'          />    <label for='activation'>activation:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 6em;'>    <input      type='number'      id='units'      class='form-control'         />    <label for='units'>units:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='number'      id='pool_size'      class='form-control'          />    <label for='pool_size'>pool_size:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='number'      max='1'      min='0'      step='0.01'      id='rate'      class='form-control'    />    <label for='rate'>rate:</label>  </div></div><br /><div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <button    type='button'    class='btn btn-danger '    style='margin: 0 auto; ' id='deleteLayer' >    Delete  </button>  </div>" +
+    "</div></div></div><div class='card add' id='add" +
     (layerNumber + 1) +
     "' style='width: 25em; height: 2em'><h4>+</h4></div>";
 
@@ -85,8 +97,8 @@ function addCardLayer() {
       "'  class='collapse'  role='tabpanel'  aria-labelledby='headingOne" +
       (layerNumber + 1) +
       "'  data-parent='#accordionEx'>  <div class='card-body'>" +
-      " <div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <select    class='browser-default custom-select'    id='modelClassSelect'    style='width: 9em; margin:0 auto; margin-bottom: 2em '  >    <option value='1' selected>Dense</option>    <option value='2'>Conv2D </option>    <option value='3'>Flatten</option>    <option value='4'>Dropout</option>    <option value='5'>MaxPooling2D</option> </select  >&nbsp;&nbsp; &nbsp;&nbsp;  <div    class='md-form'    style='margin: 0 auto; width: 9em; display:none'  >    <input      type='text'      id='inputShape'      class='form-control'      disabled          />    <label for='inputShape'>inputShape:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 7em; display:none'  >    <input      type='number'      id='kernelSize'      class='form-control'         />    <label for='kernelSize'>kernelSize:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 5em; display:none'  >    <input      type='number'      id='filters'      class='form-control'          />    <label for='filters'>filters:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 8em; '>    <input      type='text'      id='activation'      class='form-control'          />    <label for='activation'>activation:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 6em;'>    <input      type='number'      id='units'      class='form-control'         />    <label for='units'>units:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='text'      id='pool_size'      class='form-control'          />    <label for='pool_size'>pool_size:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='number'      max='1'      min='0'      step='0.01'      id='rate'      class='form-control'    />    <label for='rate'>rate:</label>  </div></div><br /><div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <button    type='button'    class='btn btn-danger '    style='margin: 0 auto; ' id='deleteLayer' >    Delete  </button>  </div>" +
-      "</div></div></div><div class='card' id='add" +
+      " <div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <select    class='browser-default custom-select'    id='modelClassSelect'    style='width: 9em; margin:0 auto; margin-bottom: 2em '  >    <option value='1' selected>Dense</option>    <option value='2'>Conv2D </option>    <option value='3'>Flatten</option>    <option value='4'>Dropout</option>    <option value='5'>MaxPooling2D</option> </select  >&nbsp;&nbsp; &nbsp;&nbsp;  <div    class='md-form'    style='margin: 0 auto; width: 9em; display:none'  >    <input      type='text'      id='inputShape'      class='form-control'      disabled          />    <label for='inputShape'>inputShape:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 7em; display:none'  >    <input      type='number'      id='kernelSize'      class='form-control'         />    <label for='kernelSize'>kernelSize:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 5em; display:none'  >    <input      type='number'      id='filters'      class='form-control'          />    <label for='filters'>filters:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 8em; '>    <input      type='text'      id='activation'      class='form-control'          />    <label for='activation'>activation:</label>  </div>  <div class='md-form' style='margin: 0 auto; width: 6em;'>    <input      type='number'      id='units'      class='form-control'         />    <label for='units'>units:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='number'      id='pool_size'      class='form-control'          />    <label for='pool_size'>pool_size:</label>  </div>  <div    class='md-form'    style='margin: 0 auto; width: 6em; display:none'  >    <input      type='number'      max='1'      min='0'      step='0.01'      id='rate'      class='form-control'    />    <label for='rate'>rate:</label>  </div></div><br /><div  style='display: flex; flex-wrap:wrap; align-content:center; max-width: 21em'>  <button    type='button'    class='btn btn-danger '    style='margin: 0 auto; ' id='deleteLayer' >    Delete  </button>  </div>" +
+      "</div></div></div><div class='card add' id='add" +
       (layerNumber + 1) +
       "' style='width: 25em; height: 2em'><h4>+</h4></div>";
 
@@ -328,3 +340,134 @@ function addFuncLayers() {
       });
   });
 }
+let optimalLayers = [
+  tf.layers.conv2d({
+    inputShape: [60, 60, 1],
+    kernelSize: 4,
+    filters: 8,
+    activation: "relu"
+  }),
+  tf.layers.maxPooling2d({ poolSize: [2, 2] }),
+  tf.layers.maxPooling2d({ poolSize: [2, 2] }),
+  tf.layers.flatten(),
+  tf.layers.dense({ units: 64, activation: "relu" }),
+  tf.layers.dense({ units: 4, activation: "softmax" })
+];
+let Layers = [
+  tf.layers.conv2d({
+    inputShape: [60, 60, 1],
+    kernelSize: 4,
+    filters: 8,
+    activation: "relu"
+  }),
+  tf.layers.dense({ units: 4, activation: "softmax" })
+];
+$("#saveLayers").click(function() {
+  Layers = [
+    tf.layers.conv2d({
+      inputShape: [60, 60, 1],
+      kernelSize: 4,
+      filters: 8,
+      activation: "relu"
+    }),
+    tf.layers.dense({ units: 4, activation: "softmax" })
+  ];
+  $(".LayerCard").each(function() {
+    let id = $(this).attr("id");
+    let i = 1;
+    let select = $("#" + id)
+      .find("select option:selected")
+      .first()
+      .text();
+    // console.log(select);
+
+    if (id != "inputLayer" && id != "outputLayer") {
+      if (select == "Dense") {
+        let activation = $("#" + id)
+          .find("#activation")
+          .first()
+          .val();
+        let units = $("#" + id)
+          .find("#units")
+          .first()
+          .val();
+        try {
+          Layers.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.dense({ units: Number(units), activation: activation })
+          );
+        } catch (error) {
+          alert(error);
+        }
+      } else if (select == "Conv2D ") {
+        let activation = $("#" + id)
+          .find("#activation")
+          .first()
+          .val();
+        let kernelSize = Number(
+          $("#" + id)
+            .find("#kernelSize")
+            .first()
+            .val()
+        );
+        let filters = Number(
+          $("#" + id)
+            .find("#filters")
+            .first()
+            .val()
+        );
+        try {
+          Layers.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.conv2d({
+              kernelSize: kernelSize,
+              filters: filters,
+              activation: activation
+            })
+          );
+        } catch (error) {
+          alert(error);
+        }
+      } else if (select == "Flatten") {
+        Layers.splice(Layers.length - 1, 0, tf.layers.flatten());
+      } else if (select == "Dropout") {
+        let rate = parseFloat(
+          $("#" + id)
+            .find("#rate")
+            .first()
+            .val()
+        );
+
+        Layers.splice(
+          Layers.length - 1,
+          0,
+          tf.layers.dropout({
+            rate: rate
+          })
+        );
+      } else if (select == "MaxPooling2D ") {
+        let pool_size = Number(
+          $("#" + id)
+            .find("#pool_size")
+            .first()
+            .val()
+        );
+
+        try {
+          Layers.splice(
+            Layers.length - 1,
+            0,
+            tf.layers.MaxPooling2D({
+              poolSize: [pool_size, pool_size]
+            })
+          );
+        } catch (error) {
+          alert(error);
+        }
+      }
+    }
+  });
+  // console.log(Layers);
+});
