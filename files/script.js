@@ -531,14 +531,14 @@ $("#saveLayers").click(function() {
           Layers.splice(
             Layers.length - 1,
             0,
-            tf.layers.MaxPooling2D({
+            tf.layers.maxPooling2D({
               poolSize: [pool_size, pool_size]
             })
           );
           Layers1.splice(
             Layers1.length - 1,
             0,
-            tf.layers.MaxPooling2D({
+            tf.layers.maxPooling2D({
               poolSize: [pool_size, pool_size]
             })
           );
