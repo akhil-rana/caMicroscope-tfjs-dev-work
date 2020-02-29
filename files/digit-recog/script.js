@@ -6,10 +6,14 @@ var model;
 
 function getModel(Layers) {
   console.log(1);
-
-  model = tf.sequential({
-    layers: Layers
-  });
+  try {
+    model = tf.sequential({
+      layers: Layers
+    });
+  } catch (error) {
+    alert(error);
+    $("#loading").css("display", "none");
+  }
 
   // model.add(
   //   tf.layers.conv2d({
@@ -117,14 +121,21 @@ function init() {
 }
 
 export async function run(Layers) {
-  const data = new MnistData();
-  await data.load();
-  const model = getModel(Layers);
-  tfvis.show.modelSummary({ name: "Model Architecture" }, model);
-  await train(model, data);
-  init();
-  alert("Training is done, try classifying your handwriting!");
-  $(".drawing").css("display", "block");
+  try {
+    const data = new MnistData();
+    $("#loadText").text("Training model...");
+    await data.load();
+    const model = getModel(Layers);
+    tfvis.show.modelSummary({ name: "Model Architecture" }, model);
+    await train(model, data);
+    init();
+    alert("Training is done, try classifying your handwriting!");
+    $(".drawing").css("display", "block");
+    $("#loading").css("display", "flex");
+  } catch (error) {
+    alert(error);
+    $("#loading").css("display", "none");
+  }
 }
 
 // document.addEventListener("DOMContentLoaded", run1);

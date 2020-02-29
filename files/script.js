@@ -8,6 +8,7 @@ $(document).ready(function() {
 
 $("#train").click(function() {
   let selectedValue = $("#modelSelect").val();
+  $("#loading").css("display", "flex");
   try {
     if (selectedValue == 1) {
       shapeRun(optimalLayers);
@@ -21,10 +22,12 @@ $("#train").click(function() {
       digitRun(optimalLayers1);
     }
   } catch (error) {
+    $("#loading").css("display", "none");
     alert(error);
   }
 });
 $("#userTrain").click(function() {
+  $("#loading").css("display", "flex");
   let selectedValue = $("#modelSelect").val();
   try {
     if (selectedValue == 1) {
@@ -39,6 +42,7 @@ $("#userTrain").click(function() {
       digitRun(Layers1);
     }
   } catch (error) {
+    $("#loading").css("display", "none");
     alert(error);
   }
 });
