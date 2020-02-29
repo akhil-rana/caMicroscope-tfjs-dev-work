@@ -403,7 +403,7 @@ let Layers = [
 let Layers1 = [
   tf.layers.conv2d({
     inputShape: [28, 28, 1],
-    kernelSize: 4,
+    kernelSize: 3,
     filters: 8,
     activation: "relu"
   }),
@@ -445,7 +445,7 @@ $("#saveLayers").click(function() {
             tf.layers.dense({ units: Number(units), activation: activation })
           );
           Layers1.splice(
-            Layers.length - 1,
+            Layers1.length - 1,
             0,
             tf.layers.dense({ units: Number(units), activation: activation })
           );
@@ -480,7 +480,7 @@ $("#saveLayers").click(function() {
             })
           );
           Layers1.splice(
-            Layers.length - 1,
+            Layers1.length - 1,
             0,
             tf.layers.conv2d({
               kernelSize: kernelSize,
@@ -493,6 +493,7 @@ $("#saveLayers").click(function() {
         }
       } else if (select == "Flatten") {
         Layers.splice(Layers.length - 1, 0, tf.layers.flatten());
+        Layers1.splice(Layers1.length - 1, 0, tf.layers.flatten());
       } else if (select == "Dropout") {
         let rate = parseFloat(
           $("#" + id)
@@ -509,7 +510,7 @@ $("#saveLayers").click(function() {
             })
           );
           Layers1.splice(
-            Layers.length - 1,
+            Layers1.length - 1,
             0,
             tf.layers.dropout({
               rate: rate
@@ -518,7 +519,7 @@ $("#saveLayers").click(function() {
         } catch (error) {
           alert(error);
         }
-      } else if (select == "MaxPooling2D ") {
+      } else if (select == "MaxPooling2D") {
         let pool_size = Number(
           $("#" + id)
             .find("#pool_size")
@@ -535,7 +536,7 @@ $("#saveLayers").click(function() {
             })
           );
           Layers1.splice(
-            Layers.length - 1,
+            Layers1.length - 1,
             0,
             tf.layers.MaxPooling2D({
               poolSize: [pool_size, pool_size]
