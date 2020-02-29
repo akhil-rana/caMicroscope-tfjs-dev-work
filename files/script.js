@@ -54,10 +54,18 @@ $("#modelSelect").change(function() {
       .find("#units")
       .first()
       .val("10");
+    $("#inputLayer")
+      .find("#kernelSize")
+      .first()
+      .val("3");
   } else if (selectedValue == 1) {
     $("#inputShape").val("(60,60,1)");
     $("#outputLayer")
       .find("#units")
+      .first()
+      .val("4");
+    $("#inputLayer")
+      .find("#kernelSize")
       .first()
       .val("4");
   }
