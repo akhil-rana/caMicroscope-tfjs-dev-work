@@ -133,7 +133,7 @@ export async function run(Layers) {
     init();
     alert("Training is done, try classifying your drawing!");
     $(".drawing").css("display", "block");
-    $("#loading").css("display", "flex");
+    $("#loading").css("display", "none");
   } catch (error) {
     alert(error);
     $("#loading").css("display", "none");
