@@ -125,8 +125,8 @@ function init() {
 export async function run(Layers) {
   try {
     const data = new MnistData();
-    $("#loadText").text("Training model...");
     await data.load();
+    $("#loadText").text("Training model...");
     const model = getModel(Layers);
     tfvis.show.modelSummary({ name: "Model Architecture" }, model);
     await train(model, data);
