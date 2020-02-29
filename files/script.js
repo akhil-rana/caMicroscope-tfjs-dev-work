@@ -50,8 +50,16 @@ $("#modelSelect").change(function() {
   let selectedValue = $("#modelSelect").val();
   if (selectedValue == 2) {
     $("#inputShape").val("(28,28,1)");
+    $("#outputLayer")
+      .find("#units")
+      .first()
+      .val("10");
   } else if (selectedValue == 1) {
     $("#inputShape").val("(60,60,1)");
+    $("#outputLayer")
+      .find("#units")
+      .first()
+      .val("4");
   }
 });
 let layerNumber = 1;
