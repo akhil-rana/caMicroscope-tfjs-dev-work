@@ -14,9 +14,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akhil-rana/caMicroscope-challenge/issues"
+    "url": "https://github.com/akhil-rana/caMicroscope-tfjs-dev-work/issues"
   },
-  "homepage": "https://github.com/akhil-rana/caMicroscope-challenge#readme",
+  "homepage": "  https://github.com/akhil-rana/caMicroscope-tfjs-dev-work#readme",
   "dependencies": {
     "express": "^4.17.1",
     "cors": "^2.8.5",
