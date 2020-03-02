@@ -12,12 +12,6 @@ const MNIST_IMAGES_SPRITE_PATH = "../../data-set/shape-recog/data.png";
 
 const MNIST_LABELS_PATH = "../../data-set/shape-recog/labels";
 
-/**
- * A class that fetches the sprited MNIST dataset and returns shuffled batches.
- *
- * NOTE: This will get much easier. For now, we do data fetching and
- * manipulation manually.
- */
 export class MnistData {
   constructor() {
     this.shuffledTrainIndex = 0;

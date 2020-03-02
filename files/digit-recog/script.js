@@ -1,11 +1,11 @@
 import { MnistData } from "./data.js";
-var canvas, ctx, saveButton, clearButton;
+var canvas, ctx, saveButton;
 var pos = { x: 0, y: 0 };
 var rawImage;
 var model;
 
 function getModel(Layers) {
-  console.log(1);
+  // console.log(1);
   try {
     model = tf.sequential({
       layers: Layers
@@ -14,23 +14,6 @@ function getModel(Layers) {
     alert(error);
     $("#loading").css("display", "none");
   }
-
-  // model.add(
-  //   tf.layers.conv2d({
-  //     inputShape: [28, 28, 1],
-  //     kernelSize: 3,
-  //     filters: 8,
-  //     activation: "relu"
-  //   })
-  // );
-  // model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
-  // model.add(
-  //   tf.layers.conv2d({ filters: 16, kernelSize: 3, activation: "relu" })
-  // );
-  // model.add(tf.layers.maxPooling2d({ poolSize: [2, 2] }));
-  // model.add(tf.layers.flatten());
-  // model.add(tf.layers.dense({ units: 128, activation: "relu" }));
-  // model.add(tf.layers.dense({ units: 10, activation: "softmax" }));
 
   model.compile({
     optimizer: tf.train.adam(),
@@ -90,19 +73,18 @@ function draw(e) {
   rawImage.src = canvas.toDataURL("image/png");
 }
 
-function erase() {
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, 280, 280);
-}
+export function save(rawImage1) {
+  try {
+    var raw = tf.browser.fromPixels(rawImage1, 1);
+    var resized = tf.image.resizeBilinear(raw, [28, 28]);
+    var tensor = resized.expandDims(0);
+    var prediction = model.predict(tensor);
+    var pIndex = tf.argMax(prediction, 1).dataSync();
 
-function save() {
-  var raw = tf.browser.fromPixels(rawImage, 1);
-  var resized = tf.image.resizeBilinear(raw, [28, 28]);
-  var tensor = resized.expandDims(0);
-  var prediction = model.predict(tensor);
-  var pIndex = tf.argMax(prediction, 1).dataSync();
-
-  alert(pIndex);
+    alert(pIndex);
+  } catch (error) {
+    alert(error);
+  }
 }
 
 function init() {
@@ -115,9 +97,7 @@ function init() {
   canvas.addEventListener("mousedown", setPosition);
   canvas.addEventListener("mouseenter", setPosition);
   saveButton = document.getElementById("sb");
-  saveButton.addEventListener("click", save);
-  clearButton = document.getElementById("cb");
-  clearButton.addEventListener("click", erase);
+  // saveButton.addEventListener("click", save);
 }
 
 export async function run(Layers) {

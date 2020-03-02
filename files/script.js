@@ -1,6 +1,7 @@
-import { run as shapeRun } from "./shape-recog/script.js";
-import { run as digitRun } from "./digit-recog/script.js";
+import { run as shapeRun, save as save1 } from "./shape-recog/script.js";
+import { run as digitRun, save as save2 } from "./digit-recog/script.js";
 
+var canvas1, rawImage1;
 $(document).ready(function() {
   $("#inputShape").val("(60,60,1)");
   $("#modelSelect").val(1);
@@ -580,3 +581,52 @@ let optimalLayers1 = [
   tf.layers.dense({ units: 128, activation: "relu" }),
   tf.layers.dense({ units: 10, activation: "softmax" })
 ];
+
+var imageLoader = document.getElementById("inputGroupFile01");
+imageLoader.addEventListener("change", handleImage, false);
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+
+function handleImage(e) {
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    var img = new Image();
+    img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      // rawImage = document.getElementById("canvasimg");
+      // rawImage.src = canvas.toDataURL("image/png");
+      canvas1 = document.getElementById("canvas");
+      rawImage1 = document.getElementById("canvasimg");
+      rawImage1.src = canvas.toDataURL("image/png");
+    };
+    img.src = event.target.result;
+  };
+  reader.readAsDataURL(e.target.files[0]);
+}
+
+$("#cb").click(function() {
+  let selectedValue = $("#modelSelect").val();
+
+  if (selectedValue == 1) {
+    $("#canvas").attr("width", "300px");
+    $("#canvas").attr("height", "300px");
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 300, 300);
+  }
+  if (selectedValue == 2) {
+    $("#canvas").attr("width", "280px");
+    $("#canvas").attr("height", "280px");
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, 280, 280);
+  }
+});
+$("#sb").click(function() {
+  if (selectedValue == 1) {
+    save1(rawImage1);
+  }
+  if (selectedValue == 2) {
+  }
+  save2(rawImage1);
+});
