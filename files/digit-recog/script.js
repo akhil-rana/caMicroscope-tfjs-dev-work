@@ -83,7 +83,7 @@ export function save(rawImage1) {
 
     alert(pIndex);
   } catch (error) {
-    alert(error);
+    // alert(error);
   }
 }
 

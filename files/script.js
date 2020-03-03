@@ -623,6 +623,8 @@ $("#cb").click(function() {
   }
 });
 $("#sb").click(function() {
+  let selectedValue = $("#modelSelect").val();
+
   if (selectedValue == 1) {
     save1(rawImage1);
   }

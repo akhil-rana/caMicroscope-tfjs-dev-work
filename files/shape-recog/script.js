@@ -88,7 +88,7 @@ export function save(rawImage1) {
     if (pIndex == 2) alert("Circle");
     if (pIndex == 3) alert("Star");
   } catch (error) {
-    alert(error);
+    // alert(error);
   }
 }
 

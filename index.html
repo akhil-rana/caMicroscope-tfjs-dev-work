@@ -343,6 +343,105 @@
             <!-- Accordion card -->
           </div>
 
+          <div
+            class="accordion md-accordion"
+            id="accordionEx"
+            role="tablist"
+            aria-multiselectable="true"
+            style="margin-top: 1.2em;"
+          >
+            <!-- Accordion card -->
+            <div class="card" style="width: 25em;">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree3">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx"
+                  href="#collapseThree3"
+                  aria-expanded="false"
+                  aria-controls="collapseThree3"
+                >
+                  <h5 class="mb-0">
+                    Model.fit()
+                    <i
+                      class="fas fa-angle-down rotate-icon"
+                      style="position: absolute; right:0.8em"
+                    ></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree3"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree3"
+                data-parent="#accordionEx"
+                style="width: 25em"
+              >
+                <div class="card-body">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Deleniti architecto quisquam sapiente recusandae facere
+                  corrupti fugit aliquam neque. Nostrum temporibus veniam
+                  recusandae quia architecto, quam rem ipsa quo dolorem
+                  possimus?
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card -->
+          </div>
+
+          <div
+            class="accordion11 md-accordion"
+            id="accordionEx11"
+            role="tablist"
+            aria-multiselectable="true"
+            style="margin-top: 1.2em;"
+          >
+            <!-- Accordion card -->
+            <div class="card" style="width: 25em;">
+              <!-- Card header -->
+              <div class="card-header" role="tab" id="headingThree311">
+                <a
+                  class="collapsed"
+                  data-toggle="collapse"
+                  data-parent="#accordionEx11"
+                  href="#collapseThree311"
+                  aria-expanded="false"
+                  aria-controls="collapseThree311"
+                >
+                  <h5 class="mb-0">
+                    Model.compile()
+                    <i
+                      class="fas fa-angle-down rotate-icon"
+                      style="position: absolute; right:0.8em"
+                    ></i>
+                  </h5>
+                </a>
+              </div>
+
+              <!-- Card body -->
+              <div
+                id="collapseThree311"
+                class="collapse"
+                role="tabpanel"
+                aria-labelledby="headingThree311"
+                data-parent="#accordionEx11"
+                style="width: 25em"
+              >
+                <div class="card-body">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                  Deleniti architecto quisquam sapiente recusandae facere
+                  corrupti fugit aliquam neque. Nostrum temporibus veniam
+                  recusandae quia architecto, quam rem ipsa quo dolorem
+                  possimus?
+                </div>
+              </div>
+            </div>
+            <!-- Accordion card -->
+          </div>
           <div style="display: flex; flex-wrap:wrap; align-content:center;">
             <button
               type="button"
@@ -362,6 +461,7 @@
             </button>
           </div>
         </div>
+
         <div class="drawing" style="display: none;">
           <canvas
             id="canvas"
@@ -419,7 +519,10 @@
           >
             <span class="sr-only">Loading...</span>
           </div>
-          <div id="loadText">Downloading dataset...</div>
+          <div id="loadText">
+            Downloading dataset... <br />
+            Training model...
+          </div>
         </div>
       </div>
     </div>
