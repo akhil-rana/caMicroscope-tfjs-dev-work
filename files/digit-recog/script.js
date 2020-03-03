@@ -1,3 +1,6 @@
+// Reference taken from tensorflow documentation
+
+
 import { MnistData } from "./data.js";
 var canvas, ctx, saveButton;
 var pos = { x: 0, y: 0 };
