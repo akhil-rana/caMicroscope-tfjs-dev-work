@@ -1,3 +1,6 @@
+// Dataset taken from https://www.kaggle.com/smeschke/four-shapes
+
+
 const IMAGE_SIZE = 3600;
 const NUM_CLASSES = 4;
 const NUM_DATASET_ELEMENTS = 14900;

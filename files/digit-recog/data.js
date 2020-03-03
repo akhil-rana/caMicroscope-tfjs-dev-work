@@ -1,3 +1,7 @@
+// References taken from tensorflow google docs and dataset taken as MNIST dataset sprite from google host.
+
+
+
 const IMAGE_SIZE = 784;
 const NUM_CLASSES = 10;
 const NUM_DATASET_ELEMENTS = 65000;
