@@ -12,7 +12,7 @@ $("#train").click(function() {
   $("#loading").css("display", "flex");
   try {
     if (selectedValue == 1) {
-      shapeRun(optimalLayers);
+      shapeRun(optimalLayers, optimalParams);
       $(".drawing").css("display", "none");
       $("#canvas").attr("width", "300px");
       $("#canvas").attr("height", "300px");
@@ -20,7 +20,7 @@ $("#train").click(function() {
       $(".drawing").css("display", "none");
       $("#canvas").attr("width", "280px");
       $("#canvas").attr("height", "280px");
-      digitRun(optimalLayers1);
+      digitRun(optimalLayers1, optimalParams);
     }
   } catch (error) {
     $("#loading").css("display", "none");
@@ -30,9 +30,12 @@ $("#train").click(function() {
 $("#userTrain").click(function() {
   $("#loading").css("display", "flex");
   let selectedValue = $("#modelSelect").val();
+  Params.epochs = $("#epochs").val();
+  Params.batchSize = $("#batchSize").val();
+  // console.log($("#batchSize").val());
   try {
     if (selectedValue == 1) {
-      shapeRun(Layers);
+      shapeRun(Layers, Params);
       $(".drawing").css("display", "none");
       $("#canvas").attr("width", "300px");
       $("#canvas").attr("height", "300px");
@@ -40,7 +43,7 @@ $("#userTrain").click(function() {
       $(".drawing").css("display", "none");
       $("#canvas").attr("width", "280px");
       $("#canvas").attr("height", "280px");
-      digitRun(Layers1);
+      digitRun(Layers1, Params);
     }
   } catch (error) {
     $("#loading").css("display", "none");
@@ -624,7 +627,9 @@ $("#cb").click(function() {
 });
 $("#sb").click(function() {
   let selectedValue = $("#modelSelect").val();
-
+  canvas1 = document.getElementById("canvas");
+  rawImage1 = document.getElementById("canvasimg");
+  rawImage1.src = canvas.toDataURL("image/png");
   if (selectedValue == 1) {
     save1(rawImage1);
   }
@@ -632,3 +637,39 @@ $("#sb").click(function() {
   }
   save2(rawImage1);
 });
+let optimalParams = {
+  optimizer: tf.train.adam(),
+  batchSize: 512,
+  epochs: 20,
+  shuffle: true
+};
+let optimizer = tf.train.adam();
+$("#optimize").change(function() {
+  let selected = $(this).val();
+  if ((selected = 1)) optimizer = tf.train.adam();
+  else if ((selected = 2)) optimizer = tf.train.adadelta();
+  else if ((selected = 3)) optimizer = tf.train.adagrade();
+  else if ((selected = 4)) optimizer = tf.train.adamax();
+  else if ((selected = 5)) optimizer = tf.train.ftrl();
+  else if ((selected = 6)) optimizer = tf.train.nadam();
+  else if ((selected = 7)) optimizer = tf.train.rmsprop();
+  else if ((selected = 8)) optimizer = tf.train.sgd();
+
+  Params.optimizer = optimizer;
+});
+let shuffle = true;
+$("#shuffle").change(function() {
+  if ($(this).is(":checked")) {
+    shuffle = true;
+    Params.shuffle = shuffle;
+  } else {
+    shuffle = false;
+    Params.shuffle = shuffle;
+  }
+});
+let Params = {
+  optimizer: optimizer,
+  batchSize: 512,
+  epochs: 20,
+  shuffle: shuffle
+};

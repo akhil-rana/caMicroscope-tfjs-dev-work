@@ -4,7 +4,7 @@ var pos = { x: 0, y: 0 };
 var rawImage;
 var model;
 
-function getModel(Layers) {
+function getModel(Layers, Params) {
   try {
     model = tf.sequential({
       layers: Layers
@@ -15,7 +15,7 @@ function getModel(Layers) {
   }
 
   model.compile({
-    optimizer: tf.train.adam(),
+    optimizer: Params.optimizer,
     loss: "categoricalCrossentropy",
     metrics: ["accuracy"]
   });
@@ -23,7 +23,7 @@ function getModel(Layers) {
   return model;
 }
 
-async function train(model, data) {
+async function train(model, data, Params) {
   const metrics = ["loss", "val_loss", "acc", "val_acc"];
   const container = { name: "Model Training", styles: { height: "1000px" } };
   const fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
@@ -43,10 +43,10 @@ async function train(model, data) {
   });
 
   return model.fit(trainXs, trainYs, {
-    batchSize: BATCH_SIZE,
+    batchSize: Number(Params.batchSize),
     validationData: [testXs, testYs],
-    epochs: 20,
-    shuffle: true,
+    epochs: Number(Params.epochs),
+    shuffle: Params.shuffle,
     callbacks: fitCallbacks
   });
 }
@@ -105,14 +105,14 @@ function init() {
   // saveButton.addEventListener("click", save);
 }
 
-export async function run(Layers) {
+export async function run(Layers, Params) {
   try {
     const data = new MnistData();
     await data.load();
     $("#loadText").text("Training model...");
-    const model = getModel(Layers);
+    const model = getModel(Layers, Params);
     tfvis.show.modelSummary({ name: "Model Architecture" }, model);
-    await train(model, data);
+    await train(model, data, Params);
     init();
     alert("Training is done, try classifying your drawing!");
     $(".drawing").css("display", "block");
