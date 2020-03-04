@@ -1,3 +1,4 @@
+## To Run the App locally
 
 ### 1. Run `npm install` in the directory
 
