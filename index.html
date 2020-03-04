@@ -48,7 +48,7 @@
           class="card"
           style="min-width: 21em; min-height: 10em; margin-bottom: 3em"
         >
-          <span class="card-title h3-responsive">Layers</span>
+          <span class="card-title h3-responsive">Customize model</span>
           <div
             class="accordion md-accordion layersClass"
             id="accordionEx"
@@ -381,12 +381,42 @@
                 data-parent="#accordionEx"
                 style="width: 25em"
               >
-                <div class="card-body">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Deleniti architecto quisquam sapiente recusandae facere
-                  corrupti fugit aliquam neque. Nostrum temporibus veniam
-                  recusandae quia architecto, quam rem ipsa quo dolorem
-                  possimus?
+                <div
+                  class="card-body"
+                  style="display: flex; flex-wrap:wrap; align-content:center"
+                >
+                  <div class="md-form" style="margin: 0 auto; width: 5em;">
+                    <input
+                      type="number"
+                      id="batchSize: "
+                      class="form-control"
+                      value="512"
+                    />
+                    <label for="batchSize">batchSize:</label>
+                  </div>
+                  <div class="md-form" style="margin: 0 auto; width: 5em;">
+                    <input
+                      type="number"
+                      id="epochs: "
+                      class="form-control"
+                      value="20"
+                    />
+                    <label for="epochs">epochs:</label>
+                  </div>
+                  <div
+                    class="custom-control custom-switch"
+                    style="width: 20em !important;"
+                  >
+                    <input
+                      type="checkbox"
+                      checked
+                      class="custom-control-input shuffle"
+                      id="customSwitches"
+                    />
+                    <label class="custom-control-label" for="customSwitches"
+                      >Shuffle</label
+                    >
+                  </div>
                 </div>
               </div>
             </div>
@@ -432,11 +462,17 @@
                 style="width: 25em"
               >
                 <div class="card-body">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Deleniti architecto quisquam sapiente recusandae facere
-                  corrupti fugit aliquam neque. Nostrum temporibus veniam
-                  recusandae quia architecto, quam rem ipsa quo dolorem
-                  possimus?
+                  <select class="browser-default custom-select" id="optimizer">
+                    <option value="0" selected>Select optimizer</option>
+                    <option value="1">Adam</option>
+                    <option value="2">Adadelta</option>
+                    <option value="3">Adagrad</option>
+                    <option value="4">Adamax</option>
+                    <option value="5">Ftrl</option>
+                    <option value="6">Nadam</option>
+                    <option value="7">RMSprop</option>
+                    <option value="8">SGD</option>
+                  </select>
                 </div>
               </div>
             </div>
