@@ -1,4 +1,4 @@
-## This web app lets user to train two models in the web browser using TF.js 
+## This web app lets user to train two models in the web browser using TF.js with layer customisation and more.
 #### 1. Four Shapes Recognition (Square, circle, star and triangle) [dark Filled figures on white backgrounds]
 ###### Dataset taken from https://www.kaggle.com/smeschke/four-shapes
 #### 2. Handwritten digits Recognition (white digits on dark background)
