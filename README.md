@@ -14,9 +14,10 @@
 
 #### 3. Open web browser at `localhost:8080`
 
+### Sample Video can be seen here : https://youtu.be/7l9m2RBFNoY
 
 
-### Tools and libraries used:
-##### JQuery
-##### mdbootstrap
-##### tensorflow.js
+### Tools and libraries used (main ones atleast):
+##### 1. JQuery
+##### 2. mdbootstrap
+##### 3. tensorflow.js
