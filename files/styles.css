@@ -26,3 +26,10 @@
   background: rgba(84, 221, 191, 0.644);
   cursor: pointer;
 }
+#resetLayers:hover {
+  transform: rotate(360deg);
+}
+#resetLayers {
+  transition: 0.4s;
+  cursor: pointer;
+}
