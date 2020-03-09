@@ -12,7 +12,7 @@ $(document).ready(function() {
 
 $("#resetLayers").click(function() {
   // $("#inputShape").val("(60,60,1)");
-  // $("#modelSelect").val(1); s
+  // $("#modelSelect").val(1);
   $("#optimizer").val(0);
   $("#batchSize").val("512");
   $("#epochs").val("20");
