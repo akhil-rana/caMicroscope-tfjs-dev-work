@@ -32,17 +32,19 @@
         id="modelSelect"
         style="width: 15em"
       >
-        <option value="1" selected>4 Shapes Recognition</option>
+        <option value="0" selected>Select model</option>
+
+        <option value="1">4 Shapes Recognition</option>
         <option value="2">Handwritten Digits</option>
         <!-- <option value="3">Rock, Paper, Scissors</option> -->
       </select>
       &nbsp;
-      <button type="button" class="btn btn-secondary px-2" id="train">
+      <!-- <button type="button" class="btn btn-secondary px-2" id="train">
         Train Model (Optimal)
-      </button>
+      </button> -->
 
       <br /><br />
-      <div class="content">
+      <div class="content" style="display: none;">
         <div
           id="layers"
           class="card"
@@ -54,12 +56,25 @@
             <span class="card-title h3-responsive" style="margin: 0 auto;"
               >Customize model</span
             >
-            <span id="resetLayers" title="Reset inputs">
+            <span id="correctInputs" style="margin-right: 1.7em;">
               <i
-                class="fas fa-redo"
-                style="margin: 0 auto; margin-top:1em; margin-right:0em; transform: scale(1.5); color:rgb(61, 148, 83)"
-              ></i> </span
-          ></span>
+                class="far fa-check-circle"
+                title="Set optimal layers"
+                data-toggle="tooltip"
+                data-placement="top"
+                style="margin: 0 auto; margin-top:1em;  transform: scale(1.7); color:rgb(61, 148, 83)"
+              ></i>
+            </span>
+            <span id="resetLayers">
+              <i
+                class="fas fa-eraser"
+                title="Erase layers"
+                data-toggle="tooltip"
+                data-placement="top"
+                style="margin: 0 auto; margin-top:1em; margin-right:0.2em; transform: scale(1.7); color:rgb(61, 148, 83)"
+              ></i>
+            </span>
+          </span>
           <div
             class="accordion md-accordion layersClass"
             id="accordionEx"
@@ -100,8 +115,7 @@
                     style="display: flex; flex-wrap:wrap; align-content:center; max-width: 21em"
                   >
                     <select
-                      class="browser-default custom-select"
-                      id="modelClassSelect"
+                      class="browser-default custom-select modelClassSelect"
                       style="width: 9em; margin:0 auto; margin-bottom: 2em "
                     >
                       <!-- <option value="1">Dense</option> -->
@@ -237,8 +251,7 @@
                     style="display: flex; flex-wrap:wrap; align-content:center; max-width: 21em"
                   >
                     <select
-                      class="browser-default custom-select"
-                      id="modelClassSelect"
+                      class="browser-default custom-select modelClassSelect"
                       style="width: 9em; margin:0 auto; margin-bottom: 2em "
                     >
                       <option value="1" selected>Dense</option> </select

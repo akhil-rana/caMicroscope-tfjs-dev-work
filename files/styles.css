@@ -27,9 +27,16 @@
   cursor: pointer;
 }
 #resetLayers:hover {
-  transform: rotate(360deg);
+  transform: scale(1.15);
 }
 #resetLayers {
-  transition: 0.4s;
+  transition: 0.5s;
+  cursor: pointer;
+}
+#correctInputs:hover {
+  transform: scale(1.15);
+}
+#correctInputs {
+  transition: 0.3s;
   cursor: pointer;
 }
