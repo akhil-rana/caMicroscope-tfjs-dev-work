@@ -15,8 +15,8 @@
 #### 3. Open web browser at `localhost:8080`
 
 ## Sample Video can be seen here :
-#### 1. Digits:  https://youtu.be/7l9m2RBFNoY
-#### 2. Shapes:  https://youtu.be/O9r4vGiGP2o
+#### 1. Digits:  https://youtu.be/r8kJyY5itFU
+#### 2. Shapes:  https://youtu.be/oT2jkxyuYZY
 
 
 ## Tools and libraries used (main ones atleast):
