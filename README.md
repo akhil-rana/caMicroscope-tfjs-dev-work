@@ -16,7 +16,7 @@
 
 ## Sample Video can be seen here :
 #### 1. Digits:  https://youtu.be/r8kJyY5itFU
-#### 2. Shapes:  https://youtu.be/O9r4vGiGP2o
+#### 2. Shapes:  https://youtu.be/oT2jkxyuYZY
 
 
 ## Tools and libraries used (main ones atleast):
