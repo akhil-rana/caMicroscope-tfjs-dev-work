@@ -17,11 +17,13 @@ function getModel(Layers, Params) {
     $("#loading").css("display", "none");
   }
 
-  model.compile({
-    optimizer: Params.optimizer,
-    loss: "categoricalCrossentropy",
-    metrics: ["accuracy"]
-  });
+  try {
+    model.compile({
+      optimizer: Params.optimizer,
+      loss: "categoricalCrossentropy",
+      metrics: ["accuracy"]
+    });
+  } catch (error) {}
 
   return model;
 }

@@ -58,6 +58,7 @@ function resetLayers() {
 //   }
 // });
 $("#userTrain").click(function() {
+  saveLayers();
   $("#loading").css("display", "flex");
   let selectedValue = $("#modelSelect").val();
   Params.epochs = $("#epochs").val();
@@ -466,7 +467,8 @@ let Layers1 = [
   }),
   tf.layers.dense({ units: 10, activation: "softmax" })
 ];
-$("#saveLayers").click(function() {
+
+function saveLayers() {
   Layers = [
     tf.layers.conv2d({
       inputShape: [60, 60, 1],
@@ -610,7 +612,8 @@ $("#saveLayers").click(function() {
   // $(document)
   //   .find(".modelClassSelect")
   //   .trigger("change");
-});
+}
+
 // let optimalLayers1 = [
 //   tf.layers.conv2d({
 //     inputShape: [28, 28, 1],
@@ -816,4 +819,10 @@ $("#correctInputs").click(function() {
     $("#epochs").val("20");
     $(".shuffle").prop("checked", true);
   }
+});
+
+$("body").on("click", "label", function() {
+  $(this)
+    .prev()
+    .focus();
 });
