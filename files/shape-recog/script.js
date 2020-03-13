@@ -26,11 +26,11 @@ function getModel(Layers, Params) {
 }
 
 async function train(model, data, Params) {
-  const metrics = ["loss", "val_loss", "acc", "val_acc"];
-  const container = { name: "Model Training", styles: { height: "1000px" } };
-  const fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
+  let metrics = ["loss", "val_loss", "acc", "val_acc"];
+  let container = { name: "Model Training", styles: { height: "1000px" } };
+  let fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
   tfvis.visor().setActiveTab("Visor");
-  const BATCH_SIZE = 512;
+  // const BATCH_SIZE = 512;
   const TRAIN_DATA_SIZE = 1300;
   const TEST_DATA_SIZE = 190;
 

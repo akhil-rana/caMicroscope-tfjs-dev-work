@@ -4,11 +4,14 @@ import { run as digitRun, save as save2 } from "./digit-recog/script.js";
 var canvas1, rawImage1;
 $(document).ready(function() {
   // $("#inputShape").val("(60,60,1)");
-  // $("#modelSelect").val(1);
+  $("#modelSelect")
+    .val(0)
+    .change();
   $("#optimizer").val(0);
   $("#batchSize").val("512");
   $("#epochs").val("20");
 });
+
 $(document).ready(function() {
   $("#resetLayers").click(function() {
     // $("#inputShape").val("(60,60,1)");
