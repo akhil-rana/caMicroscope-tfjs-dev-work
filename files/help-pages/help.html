@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      #ytHelp:hover {
+        transform: scale(1.2);
+      }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -14,7 +19,7 @@
     <link href="../../libraries/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Material Design Bootstrap -->
     <link href="../../libraries/css/mdb.min.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>Help</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark primary-color">
@@ -27,9 +32,19 @@
 
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <!-- Navbar brand -->
-      <span class="navbar-brand" style="font-size: x-large; cursor:default"
+      <span class="navbar-brand" style="font-size: x-large; cursor:default;"
         >Help</span
       >
+      <a href="/files/help-pages/yt-help.html">
+        <i
+          id="ytHelp"
+          class="fab fa-youtube"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Sample Videos"
+          style="position: absolute;right: 1em; font-size:xx-large; color:white; transition: 0.3s; margin-top:-0.5em "
+        ></i
+      ></a>
     </nav>
     <br />
     <div style="display: flex; flex-wrap:wrap">
@@ -168,6 +183,7 @@
       </div>
       <!--/.Carousel Wrapper-->
     </div>
+
     <!-- JQuery -->
     <script
       type="text/javascript"
@@ -185,5 +201,10 @@
     ></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="../../libraries/js/mdb.min.js"></script>
+    <script>
+      $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
   </body>
 </html>
