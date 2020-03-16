@@ -22,6 +22,13 @@
 #### 1. Digits:  https://youtu.be/r8kJyY5itFU
 #### 2. Shapes:  https://youtu.be/oT2jkxyuYZY
 
+## Future Project Ideas
+1. Generation of spritesheet in the browser using existing dataset from camicroscope or user's own dataset. 
+2. Giving the user many options for creating a new model entirely in browser.
+3. A very basic user login system maybe so that progress of the user is stored and user can continue from wherever he/she left last time. Or using cookies and avoid logging in at all.
+4. Exporting and importing the workbench as a JSON file maybe so as to continue work anytime.
+5. Creating the algorithm architecture and selecting training data maybe preexisting from camicroscope or browsing local or selecting a url.
+6. An option to train model on server-side by user giving his/her own server address. The server will be deployed on heroku by the user first with very minimum difficulty and instructions will be provided.
 
 ## Tools and libraries used (main ones atleast):
 ##### 1. JQuery
