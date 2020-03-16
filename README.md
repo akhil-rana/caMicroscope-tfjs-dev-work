@@ -30,7 +30,7 @@
 5. Creating the algorithm architecture and selecting training data maybe preexisting from camicroscope or browsing local or selecting a url.
 6. An option to train model on server-side by user giving his/her own server address. The server will be deployed on heroku by the user first with very minimum difficulty and instructions will be provided.
 
-## Tools and libraries used (main ones atleast):
+## Tools and libraries used:
 ##### 1. JQuery
 ##### 2. mdbootstrap
 ##### 3. tensorflow.js
